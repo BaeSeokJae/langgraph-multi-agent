@@ -1,0 +1,101 @@
+[project]
+name = "langgraph-multi-agent"
+version = "0.1.0"
+description = "Multi-agent system with PM, Dev, and QA agents using LangGraph"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "langgraph>=1.0.5",
+    "langchain>=0.3.0",
+    "langchain-openai>=0.2.0",
+    "python-dotenv>=1.0.0",
+    "typing-extensions>=4.12.0",
+    "pre-commit>=4.5.0",
+    "prompt-toolkit>=3.0.0",
+    "rich>=13.0.0",
+    "mypy>=1.19.1",
+]
+
+[tool.ruff]
+line-length = 168
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "A", "PLC", "PLE", "PLW", "I", "B", "UP"]  # (flake8/pyflakes/isort/bugbear/pyupgrade 성격 룰들)
+
+fixable = ["ALL"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"  # 들여쓰기 스타일: space 또는 tab
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.mypy]
+python_version = "3.13"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+strict_equality = true
+
+# 외부 라이브러리 타입 체킹 제외 (타입 스텁이 없는 경우)
+[[tool.mypy.overrides]]
+module = [
+    "langchain.*",
+    "langgraph.*",
+    "langchain_openai.*",
+]
+ignore_missing_imports = true
+
+[tool.pyright]
+typeCheckingMode = "basic"
+pythonVersion = "3.13"
+# 타입 관련 리포트 활성화
+reportMissingParameterType = true
+reportMissingTypeArgument = true
+reportUnknownParameterType = true
+reportUnknownVariableType = true
+reportUnknownMemberType = true
+# 호출 및 인자 관련
+reportCallIssue = true
+reportArgumentType = true
+reportAssignmentType = true
+reportReturnType = true
+# Optional 관련
+reportOptionalSubscript = true
+reportOptionalMemberAccess = true
+reportOptionalCall = true
+reportOptionalIterable = true
+reportOptionalContextManager = true
+reportOptionalOperand = true
+# 일반 타입 이슈
+reportGeneralTypeIssues = true
+reportAttributeAccessIssue = true
+reportOperatorIssue = true
+reportUnboundVariable = true
+# 사용되지 않는 코드
+reportUnusedImport = true
+reportUnusedVariable = true
+reportUnusedClass = true
+reportUnusedFunction = true
+reportUnusedException = true
+reportUnusedCoroutine = true
+reportUnusedExpression = true
+# 기타
+reportMissingImports = true
+reportDuplicateImport = true
+reportIncompatibleMethodOverride = true
+reportIncompatibleVariableOverride = true
+reportUninitializedInstanceVariable = true
+reportNoReturnInFunction = true
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.9",
+    "mypy>=1.19.1",
+]

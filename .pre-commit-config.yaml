@@ -1,0 +1,7 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.9  # 팀에서 버전 고정(예시)
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
